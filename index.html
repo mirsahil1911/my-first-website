@@ -8,3 +8,127 @@
     <p>This is my first website hosted on GitHub Pages.</p>
   </body>
 </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FashionHub - Clothing Brand</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0; padding: 0;
+        background: #fafafa;
+      }
+      header {
+        background: #222;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+      }
+      nav {
+        background: #333;
+        padding: 10px 0;
+        text-align: center;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+      }
+      .hero {
+        background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        color: #fff;
+        padding: 80px 20px;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: 3em;
+        margin-bottom: 10px;
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        padding: 40px 20px;
+        max-width: 1000px;
+        margin: auto;
+      }
+      .product {
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 16px;
+        text-align: center;
+      }
+      .product img {
+        max-width: 100%;
+        border-radius: 5px;
+      }
+      .product h3 {
+        margin: 12px 0 6px;
+      }
+      .product p {
+        color: #888;
+        font-size: 1em;
+      }
+      .product .price {
+        color: #222;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+      footer {
+        background: #222;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FashionHub</h1>
+      <p>Your Style, Our Passion</p>
+    </header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <section class="hero">
+      <h1>Fall Collection 2025</h1>
+      <p>Discover the latest trends in fashion</p>
+    </section>
+    <section class="products">
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="T-shirt">
+        <h3>Classic T-Shirt</h3>
+        <p>100% Cotton, Unisex</p>
+        <div class="price">$25</div>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1503342452485-86a096e79bba?auto=format&fit=crop&w=400&q=80" alt="Jean Jacket">
+        <h3>Denim Jacket</h3>
+        <p>Trendy & timeless</p>
+        <div class="price">$55</div>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Dress">
+        <h3>Summer Dress</h3>
+        <p>Lightweight and comfy</p>
+        <div class="price">$40</div>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=400&q=80" alt="Shoes">
+        <h3>Running Shoes</h3>
+        <p>Perfect for everyday wear</p>
+        <div class="price">$60</div>
+      </div>
+    </section>
+    <footer>
+      &copy; 2025 FashionHub &mdash; Follow us on 
+      <a href="#" style="color:#fff; text-decoration:underline;">Instagram</a>
+    </footer>
+  </body>
+</html>
