@@ -338,7 +338,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     updateCartUI();
 
-    // Nice-to-have: keyboard accessibility for cart (close on Esc)
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') cartEl.style.display='none' });
     <!-- UPI Payment Button -->
 <a href="upi://pay?pa=sahil2129@slc&pn=Sahil&cu=INR"
@@ -352,3 +351,11 @@
   </script>
 </body>
 </html>
+<!-- Simple UPI Payment Button -->
+<a href="upi://pay?pa=sahil2129@slc&pn=Sahil&cu=INR"
+   style="display:inline-block;background:#1f6feb;color:#fff;
+          padding:12px 20px;border-radius:8px;text-decoration:none;
+          font-weight:bold;">
+  Pay with UPI
+</a>
+
