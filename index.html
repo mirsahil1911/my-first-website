@@ -1,1139 +1,362 @@
-<div class="logo">
-  <a href="index.html">
-    <img src="https://placehold.co/120x40?text=Logo" alt="BrandName Logo" style="height:40px;">
-  </a>
-</div>
-<!DOCTYPE html>
+<!--
+  Complete single-file static e-commerce starter site
+  Save this file as `index.html` and place it at the root of your GitHub Pages repository
+  (or the branch you use for GitHub Pages) to overwrite the existing site.
+
+  Deployment quick steps (GitHub Pages):
+  1. In your local clone of the repo (or via GitHub web editor), replace the old files with this index.html
+  2. Commit & push to the branch you're using for pages (usually `main` or `gh-pages`).
+  3. Wait a minute and visit: https://<your-username>.github.io/<repo-name>/
+
+  Notes:
+  • This is intentionally self-contained (HTML, CSS, JS in one file) so you can paste it directly.
+  • Images are placeholder links (picsum); replace with your product images and alt text.
+  • The cart uses localStorage so it persists while users browse on the same browser.
+  • Accessibility and responsive layout are considered (aria attributes, keyboard focus, mobile nav).
+  • Customize colors, fonts, and content to match your brand.
+-->
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>BrandName - Latest Fashion</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo">BrandName</div>
-      <nav class="main-nav">
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="#" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-  
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="container">
-      <h1>Fall Collection 2025</h1>
-      <p>Discover this season's must-haves. Refresh your wardrobe today!</p>
-      <a href="#" class="cta-btn">Shop Now</a>
-    </div>
-  </section>
-  
-  <!-- Category Highlights -->
-  <nav class="category-nav container">
-    <a href="#">Men</a>
-    <a href="#">Women</a>
-    <a href="#">Kids</a>
-    <a href="#">Accessories</a>
-    <a href="#">Sale</a>
-  </nav>
-  
-  <!-- New Arrivals and Best Sellers -->
-  <section class="highlights container">
-    <div class="highlight">
-      <h2>New Arrivals</h2>
-      <a href="#">View All</a>
-    </div>
-    <div class="highlight">
-      <h2>Best Sellers</h2>
-      <a href="#">Shop Now</a>
-    </div>
-  </section>
-  
-  <!-- Product Grid -->
-  <section class="product-grid container">
-    <div class="product-card">
-      <img src="https://placehold.co/300x400?text=Jacket" alt="Jacket">
-      <h3>Classic Denim Jacket</h3>
-      <p>$49.99</p>
-      <button>Add to Cart</button>
-    </div>
-    <div class="product-card">
-      <img src="https://placehold.co/300x400?text=T-Shirt" alt="T-Shirt">
-      <h3>Logo T-Shirt</h3>
-      <p>$19.99</p>
-      <button>Add to Cart</button>
-    </div>
-    <div class="product-card">
-      <img src="https://placehold.co/300x400?text=Sneakers" alt="Sneakers">
-      <h3>White Sneakers</h3>
-      <p>$59.99</p>
-      <button>Add to Cart</button>
-    </div>
-    <div class="product-card">
-      <img src="https://placehold.co/300x400?text=Hoodie" alt="Hoodie">
-      <h3>Black Hoodie</h3>
-      <p>$39.99</p>
-      <button>Add to Cart</button>
-    </div>
-  </section>
-  
-  <!-- Newsletter & Footer -->
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-</body>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Shop - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="#" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-  
-  <main class="container shop-main">
-    <!-- Filters Sidebar -->
-    <aside class="filters">
-      <h3>Filter By</h3>
-      <div class="filter-group">
-        <label>Category</label>
-        <select>
-          <option>All</option>
-          <option>Men</option>
-          <option>Women</option>
-          <option>Kids</option>
-          <option>Accessories</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Size</label>
-        <select>
-          <option>All</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Color</label>
-        <select>
-          <option>All</option>
-          <option>Black</option>
-          <option>White</option>
-          <option>Blue</option>
-          <option>Red</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Price</label>
-        <select>
-          <option>All</option>
-          <option>Under $25</option>
-          <option>$25 - $50</option>
-          <option>$50 - $100</option>
-          <option>Over $100</option>
-        </select>
-      </div>
-    </aside>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BrandName — Fall Collection</title>
+  <meta name="description" content="BrandName — modern, accessible, and fast e‑commerce starter site." />
 
-    <section class="shop-content">
-      <!-- Sorting and Pagination Controls -->
-      <div class="shop-controls">
-        <div>
-          <label for="sort">Sort by:</label>
-          <select id="sort">
-            <option>Newest</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Popularity</option>
-          </select>
-        </div>
-        <div class="pagination">
-          <button disabled>&lt;</button>
-          <span>1</span>
-          <button>&gt;</button>
-        </div>
-      </div>
+  <!-- Basic SEO / Social -->
+  <meta property="og:title" content="BrandName – Fall Collection" />
+  <meta property="og:description" content="Shop our Fall Collection. Clean UI, responsive, built for speed." />
+  <meta property="og:image" content="https://picsum.photos/1200/630?random=1" />
 
-      <!-- Product Grid -->
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="https://placehold.co/300x400?text=Jacket" alt="Jacket">
-          <h3>Classic Denim Jacket</h3>
-          <p>$49.99</p>
-          <button>Add to Cart</button>
-        </div>
-        <div class="product-card">
-          <img src="https://placehold.co/300x400?text=T-Shirt" alt="T-Shirt">
-          <h3>Logo T-Shirt</h3>
-          <p>$19.99</p>
-          <button>Add to Cart</button>
-        </div>
-        <div class="product-card">
-          <img src="https://placehold.co/300x400?text=Sneakers" alt="Sneakers">
-          <h3>White Sneakers</h3>
-          <p>$59.99</p>
-          <button>Add to Cart</button>
-        </div>
-        <div class="product-card">
-          <img src="https://placehold.co/300x400?text=Hoodie" alt="Hoodie">
-          <h3>Black Hoodie</h3>
-          <p>$39.99</p>
-          <button>Add to Cart</button>
-        </div>
-        <!-- Add more product cards as needed -->
-      </div>
-    </section>
-  </main>
-  
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
-
-.shop-main {
-  display: flex;
-  gap: 2em;
-  margin-top: 2em;
-}
-
-.filters {
-  flex: 0 0 220px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px #ececec;
-  padding: 2em 1em;
-  height: fit-content;
-}
-.filters h3 {
-  margin-top: 0;
-}
-.filter-group {
-  margin-bottom: 1em;
-}
-
-.shop-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.shop-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2em;
-  background: #fff;
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px #ececec;
-}
-.shop-controls select {
-  padding: 0.4em;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-}
-.pagination button {
-  padding: 0.5em 1em;
-  border: none;
-  background: #eee;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 0 0.2em;
-  font-size: 1em;
-}
-.pagination button[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-@media (max-width: 900px) {
-  .shop-main { flex-direction: column; }
-  .filters { width: 100%; margin-bottom: 2em; }
-}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Product Name - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
   <style>
-    /* Gallery styles */
-    .product-gallery { display: flex; gap: 1.5em; }
-    .product-main-img { width: 350px; height: 450px; border-radius: 10px; object-fit: cover; }
-    .product-thumbs { display: flex; flex-direction: column; gap: 0.5em; }
-    .product-thumb { width: 70px; height: 90px; border-radius: 5px; object-fit: cover; border: 2px solid #eee; cursor: pointer; }
-    .product-thumb.active { border-color: #222; }
-    /* Product info */
-    .product-info { flex: 1; padding-left: 2em; }
-    .product-title { font-size: 2em; margin-bottom: 0.2em; }
-    .product-price { font-size: 1.3em; font-weight: bold; color: #0d6efd; margin-bottom: 1em; }
-    .selectors { display: flex; gap: 2em; margin-bottom: 1em; }
-    .selectors label { display: block; margin-bottom: 0.3em; }
-    .selectors select { padding: 0.5em; border-radius: 4px; }
-    /* Buttons */
-    .add-cart-btn, .wishlist-btn, .size-guide-btn { padding: 0.7em 1.5em; border-radius: 25px; border: none; margin-right: 1em; font-size: 1em; cursor: pointer; }
-    .add-cart-btn { background: #222; color: #fff; }
-    .wishlist-btn { background: #fff; color: #222; border: 1px solid #222; }
-    .size-guide-btn { background: none; color: #0d6efd; border: none; text-decoration: underline; font-size: 0.95em; }
-    /* Reviews */
-    .reviews { margin-top: 2em; }
-    .review { background: #fafafa; margin-bottom: 1em; padding: 1em; border-radius: 8px; }
-    .review .author { font-weight: bold; }
-    .review .rating { color: gold; }
-    /* Size guide modal */
-    .modal-bg { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
-    .modal { background: #fff; padding: 2em; border-radius: 10px; max-width: 400px; }
-    .modal h3 { margin-top: 0; }
-    .close-modal { background: #222; color: #fff; border: none; border-radius: 50%; width: 30px; height: 30px; float: right; cursor: pointer;}
-    @media (max-width:900px) {
-      .product-detail-main { flex-direction: column; }
-      .product-info { padding-left: 0; }
-      .product-gallery { flex-direction: column; align-items: center;}
+    :root{
+      --accent:#1f6feb; /* primary brand color */
+      --accent-2:#0b5ed7;
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --radius:12px;
+      --shadow: 0 8px 24px rgba(15,23,42,0.06);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.4}
+
+    /* Container */
+    .wrap{max-width:1100px;margin:32px auto;padding:0 20px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover, nav a:focus{background:rgba(15,23,42,0.04);outline:none}
+
+    .actions{display:flex;align-items:center;gap:12px}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(15,23,42,0.06)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin:28px 0}
+    .hero-card{background:linear-gradient(180deg,rgba(31,111,235,0.08),transparent);padding:28px;border-radius:16px}
+    .hero h1{margin:0;font-size:28px}
+    .hero p{color:var(--muted);margin-top:8px}
+
+    .promo-image{border-radius:12px;overflow:hidden;height:260px;background:#ddd}
+    .promo-image img{width:100%;height:100%;object-fit:cover}
+
+    /* Filters + shop */
+    .shop{display:grid;grid-template-columns:220px 1fr;gap:20px;margin-top:18px}
+    .filters{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+    .filters h4{margin:0 0 8px 0}
+    .filter-group{margin-bottom:12px}
+    .chip{display:inline-block;padding:6px 8px;border-radius:999px;background:#f1f5f9;margin:6px 6px 0 0;cursor:pointer}
+
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+    .product{background:var(--card);border-radius:12px;padding:12px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .product img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+    .product h3{margin:10px 0 6px 0;font-size:16px}
+    .price-row{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .price{font-weight:700}
+
+    /* Cart drawer */
+    .cart-drawer{position:fixed;right:18px;bottom:18px;background:var(--card);border-radius:14px;box-shadow:var(--shadow);width:340px;max-height:70vh;overflow:auto;padding:12px}
+    .cart-toggle{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;border-radius:999px;padding:12px 14px;border:0;cursor:pointer}
+    .cart-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f1f5f9}
+
+    /* Footer */
+    footer{margin:36px 0 80px 0;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .shop{grid-template-columns:1fr}
+      .filters{order:2}
+      .cart-drawer{right:12px;left:12px;width:auto}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>BN</div>
+        <div>
+          <div style="font-weight:800">BrandName</div>
+          <div class="muted" style="font-size:12px">Modern apparel</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="#" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
 
-  <main class="container">
-    <div class="product-detail-main" style="display:flex; gap:3em; margin-top:2em;">
-      <!-- Product Gallery -->
-      <div class="product-gallery">
-        <img class="product-main-img" id="mainImg" src="https://placehold.co/350x450?text=Denim+Jacket+1" alt="Denim Jacket">
-        <div class="product-thumbs">
-          <img class="product-thumb active" src="https://placehold.co/350x450?text=Denim+Jacket+1" alt="Thumb 1" onclick="setMainImg(this)">
-          <img class="product-thumb" src="https://placehold.co/350x450?text=Denim+Jacket+2" alt="Thumb 2" onclick="setMainImg(this)">
-          <img class="product-thumb" src="https://placehold.co/350x450?text=Denim+Jacket+3" alt="Thumb 3" onclick="setMainImg(this)">
-        </div>
+      <div class="actions">
+        <button class="btn secondary" id="searchBtn">Search</button>
+        <button class="btn" id="signin">Sign In</button>
+        <button id="cartBtn" class="cart-toggle" aria-controls="cart" aria-expanded="false" aria-label="Open cart">🛒 <span id="cartCount" style="margin-left:8px">0</span></button>
       </div>
-      <!-- Product Info -->
-      <div class="product-info">
-        <h1 class="product-title">Classic Denim Jacket</h1>
-        <div class="product-price">$49.99</div>
-        <p>
-          The timeless denim jacket, made from premium cotton. Perfect for every season with a modern fit and vintage look.
-        </p>
-        <div class="selectors">
-          <div>
-            <label for="size">Size</label>
-            <select id="size">
-              <option>S</option>
-              <option>M</option>
-              <option>L</option>
-              <option>XL</option>
-            </select>
-            <button class="size-guide-btn" onclick="showSizeGuide(event)">Size Guide</button>
-          </div>
-          <div>
-            <label for="color">Color</label>
-            <select id="color">
-              <option>Blue</option>
-              <option>Black</option>
-              <option>White</option>
-            </select>
-          </div>
-        </div>
-        <button class="add-cart-btn">Add to Cart</button>
-        <button class="wishlist-btn">♡ Wishlist</button>
-        <div style="margin-top:2em;">
-          <h3>Details</h3>
-          <ul>
-            <li>Material: 100% Cotton</li>
-            <li>Machine washable</li>
-            <li>Limited edition</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- Reviews -->
-    <section class="reviews">
-      <h2>Customer Reviews</h2>
-      <div class="review">
-        <div class="author">Jane D.</div>
-        <div class="rating">★★★★★</div>
-        <p>Love this jacket! Fits perfectly and goes with everything.</p>
-      </div>
-      <div class="review">
-        <div class="author">Chris M.</div>
-        <div class="rating">★★★★☆</div>
-        <p>Great quality. The sleeves are a bit long, but overall happy.</p>
-      </div>
-      <!-- Add more reviews as needed -->
-    </section>
-  </main>
+    </header>
 
-  <!-- Size Guide Modal -->
-  <div class="modal-bg" id="sizeGuideModal">
-    <div class="modal">
-      <button class="close-modal" onclick="hideSizeGuide()">&times;</button>
-      <h3>Size Guide</h3>
-      <table>
-        <tr><th>Size</th><th>Chest (cm)</th><th>Length (cm)</th></tr>
-        <tr><td>S</td><td>94</td><td>64</td></tr>
-        <tr><td>M</td><td>100</td><td>66</td></tr>
-        <tr><td>L</td><td>106</td><td>68</td></tr>
-        <tr><td>XL</td><td>112</td><td>70</td></tr>
-      </table>
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-card">
+          <p class="muted" style="margin:0">NEW — Fall Collection 2025</p>
+          <h1>Minimal pieces. Lasting style.</h1>
+          <p class="muted">Timeless jackets, comfortable tees, and sneakers built for everyday life. Free shipping on orders over $75.</p>
+          <p style="margin-top:18px">
+            <a href="#shop" class="btn">Shop Now</a>
+            <a href="#about" class="btn secondary" style="margin-left:10px">Learn More</a>
+          </p>
+        </div>
+
+        <div class="promo-image" aria-hidden>
+          <img src="https://picsum.photos/800/600?random=12" alt="Model wearing a denim jacket" />
+        </div>
+      </section>
+
+      <section id="shop" class="shop" aria-label="Shop">
+        <aside class="filters" aria-labelledby="filters-heading">
+          <h4 id="filters-heading">Filters</h4>
+
+          <div class="filter-group">
+            <div class="muted" style="font-size:13px">Category</div>
+            <div>
+              <button class="chip" data-filter="all">All</button>
+              <button class="chip" data-filter="men">Men</button>
+              <button class="chip" data-filter="women">Women</button>
+              <button class="chip" data-filter="accessories">Accessories</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="muted" style="font-size:13px">Price</div>
+            <div style="margin-top:8px">
+              <button class="chip" data-price="0-50">Under $50</button>
+              <button class="chip" data-price="50-150">$50–$150</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="muted" style="font-size:13px">Sort</div>
+            <select id="sortSelect" style="margin-top:8px;padding:8px;border-radius:8px;border:1px solid #eef2ff;min-width:170px">
+              <option value="new">Newest</option>
+              <option value="price-asc">Price — low to high</option>
+              <option value="price-desc">Price — high to low</option>
+            </select>
+          </div>
+
+        </aside>
+
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+            <div>
+              <h2 style="margin:0">Shop our picks</h2>
+              <div class="muted" style="font-size:13px">4 products</div>
+            </div>
+            <div>
+              <input id="searchInput" type="search" placeholder="Search products" style="padding:8px;border-radius:10px;border:1px solid #e6eefc;min-width:180px" />
+            </div>
+          </div>
+
+          <div class="products-grid" id="productGrid" aria-live="polite">
+            <!-- Products injected by JS -->
+          </div>
+        </div>
+      </section>
+
+      <section id="about" style="margin-top:28px">
+        <h3>About BrandName</h3>
+        <p class="muted">We craft simple, long-lasting wardrobe pieces with a focus on fit, fabric, and sustainability. Based in India, shipping worldwide.</p>
+      </section>
+
+      <section id="contact" style="margin-top:18px">
+        <h3>Contact</h3>
+        <p class="muted">Questions? Email <a href="mailto:hello@brandname.example">hello@brandname.example</a> or use the contact page.</p>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:center;gap:12px;align-items:center;margin-bottom:8px">
+        <small>&copy; <span id="year"></span> BrandName</small>
+      </div>
+      <div class="muted">Built with ❤️ — simple, responsive, and accessible.</div>
+    </footer>
+  </div>
+
+  <!-- Cart drawer (hidden by default) -->
+  <div id="cart" class="cart-drawer" role="dialog" aria-label="Shopping cart" style="display:none">
+    <h4 style="margin:0 0 8px 0">Your Cart</h4>
+    <div id="cartItems"></div>
+    <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+      <div class="muted">Total:</div>
+      <div style="font-weight:800" id="cartTotal">$0.00</div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button class="btn" id="checkoutBtn">Checkout</button>
+      <button class="btn secondary" id="clearCartBtn">Clear</button>
     </div>
   </div>
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
   <script>
-    // Thumbnail gallery logic
-    function setMainImg(thumb) {
-      document.getElementById('mainImg').src = thumb.src;
-      document.querySelectorAll('.product-thumb').forEach(img=>img.classList.remove('active'));
-      thumb.classList.add('active');
-    }
-    // Size guide modal logic
-    function showSizeGuide(e) {
-      e.preventDefault();
-      document.getElementById('sizeGuideModal').style.display = 'flex';
-    }
-    function hideSizeGuide() {
-      document.getElementById('sizeGuideModal').style.display = 'none';
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Your Cart - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .cart-main { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #ececec; padding: 2em; }
-    .cart-title { font-size: 2em; margin-bottom: 1em; }
-    .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
-    .cart-table th, .cart-table td { padding: 1em 0.5em; text-align: left; border-bottom: 1px solid #eee; }
-    .cart-table th { color: #555; font-weight: 600; }
-    .cart-product-img { width: 60px; border-radius: 8px; }
-    .cart-qty { width: 50px; text-align: center; }
-    .remove-btn { background: #fff; color: #d00; border: 1px solid #d00; border-radius: 50%; font-size: 1em; width: 32px; height: 32px; cursor: pointer; }
-    .cart-summary { text-align: right; font-size: 1.2em; margin-bottom: 2em; }
-    .checkout-btn { background: #0d6efd; color: #fff; border: none; border-radius: 25px; padding: 0.9em 2em; font-size: 1.1em; cursor: pointer; }
-    @media (max-width: 700px) {
-      .cart-table { font-size: 0.95em; }
-      .cart-main { padding: 1em; }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="cart.html" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
+    // --- Example product data. Replace with your real data or JSON source ---
+    const PRODUCTS = [
+      {id: 'p1', title: 'Classic Denim Jacket', price: 119.00, category: 'men', img:'https://picsum.photos/seed/denim/800/600'},
+      {id: 'p2', title: 'Logo T‑Shirt', price: 29.00, category: 'women', img:'https://picsum.photos/seed/tshirt/800/600'},
+      {id: 'p3', title: 'White Sneakers', price: 79.00, category: 'men', img:'https://picsum.photos/seed/sneaker/800/600'},
+      {id: 'p4', title: 'Black Hoodie', price: 59.00, category: 'women', img:'https://picsum.photos/seed/hoodie/800/600'}
+    ];
 
-  <main class="cart-main">
-    <div class="cart-title">Your Shopping Cart</div>
-    <table class="cart-table" id="cartTable">
-      <thead>
-        <tr>
-          <th>Product</th>
-          <th>Details</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Subtotal</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr data-price="49.99">
-          <td><img class="cart-product-img" src="https://placehold.co/60x80?text=Jacket" alt="Jacket"></td>
-          <td>
-            <div>Classic Denim Jacket</div>
-            <div style="font-size:0.9em;color:#888;">Size: M, Color: Blue</div>
-          </td>
-          <td>$49.99</td>
-          <td><input type="number" class="cart-qty" value="1" min="1" onchange="updateCart()"></td>
-          <td class="cart-line-total">$49.99</td>
-          <td><button class="remove-btn" onclick="removeRow(this)">&times;</button></td>
-        </tr>
-        <tr data-price="19.99">
-          <td><img class="cart-product-img" src="https://placehold.co/60x80?text=T-shirt" alt="T-shirt"></td>
-          <td>
-            <div>Logo T-Shirt</div>
-            <div style="font-size:0.9em;color:#888;">Size: L, Color: White</div>
-          </td>
-          <td>$19.99</td>
-          <td><input type="number" class="cart-qty" value="2" min="1" onchange="updateCart()"></td>
-          <td class="cart-line-total">$39.98</td>
-          <td><button class="remove-btn" onclick="removeRow(this)">&times;</button></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="cart-summary">
-      <strong>Total: $<span id="cartTotal">89.97</span></strong>
-    </div>
-    <a href="checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
-  </main>
+    // Util
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    const money = v => '$' + v.toFixed(2);
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    function updateCart() {
-      let total = 0;
-      document.querySelectorAll("#cartTable tbody tr").forEach(row => {
-        const price = parseFloat(row.getAttribute('data-price'));
-        const qty = parseInt(row.querySelector('.cart-qty').value);
-        const lineTotal = price * qty;
-        row.querySelector('.cart-line-total').textContent = "$" + lineTotal.toFixed(2);
-        total += lineTotal;
-      });
-      document.getElementById('cartTotal').textContent = total.toFixed(2);
-    }
-    function removeRow(btn) {
-      const row = btn.closest('tr');
-      row.parentNode.removeChild(row);
-      updateCart();
-    }
-    // Initial calculation
-    updateCart();
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Checkout - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .checkout-main { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #ececec; padding: 2em; }
-    .checkout-title { font-size: 2em; margin-bottom: 1.5em; }
-    .checkout-steps { display: flex; flex-wrap: wrap; gap: 2em; }
-    .checkout-form { flex: 2; }
-    .order-summary { flex: 1; background: #fafafa; border-radius: 10px; padding: 1em; margin-top: 1em; }
-    .form-section { margin-bottom: 2em; }
-    label { display: block; margin-bottom: 0.3em; font-weight: 500; }
-    input, select { width: 100%; padding: 0.7em; margin-bottom: 1em; border-radius: 5px; border: 1px solid #ddd; }
-    .order-summary-title { font-weight: bold; margin-bottom: 0.7em; }
-    .order-items { margin-bottom: 1em; }
-    .order-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5em; }
-    .order-total { font-size: 1.1em; font-weight: bold; margin-top: 1em; }
-    .confirm-btn { background: #0d6efd; color: #fff; border: none; border-radius: 25px; padding: 1em 2.5em; font-size: 1.1em; cursor: pointer; margin-top: 1em; width: 100%; }
-    @media (max-width: 900px) {
-      .checkout-steps { flex-direction: column; }
-      .order-summary { margin-top: 2em; }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="cart.html" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="checkout-main">
-    <div class="checkout-title">Checkout</div>
-    <div class="checkout-steps">
-      <!-- Shipping + Payment Forms -->
-      <form class="checkout-form">
-        <div class="form-section">
-          <h3>Shipping Information</h3>
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" required>
-          <label for="address">Address</label>
-          <input type="text" id="address" required>
-          <label for="city">City</label>
-          <input type="text" id="city" required>
-          <label for="zip">ZIP / Postal Code</label>
-          <input type="text" id="zip" required>
-          <label for="country">Country</label>
-          <select id="country" required>
-            <option>United States</option>
-            <option>United Kingdom</option>
-            <option>Canada</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-section">
-          <h3>Payment Information</h3>
-          <label for="cardname">Name on Card</label>
-          <input type="text" id="cardname" required>
-          <label for="cardnumber">Card Number</label>
-          <input type="text" id="cardnumber" maxlength="19" required pattern="[0-9 ]+">
-          <label for="exp">Expiration Date</label>
-          <input type="text" id="exp" placeholder="MM/YY" required pattern="\d{2}/\d{2}">
-          <label for="cvv">CVV</label>
-          <input type="text" id="cvv" maxlength="4" required pattern="\d{3,4}">
-        </div>
-        <button type="submit" class="confirm-btn" onclick="showConfirmation(event)">Confirm Order</button>
-      </form>
-      <!-- Order Review -->
-      <aside class="order-summary">
-        <div class="order-summary-title">Order Summary</div>
-        <div class="order-items">
-          <div class="order-item">
-            <span>Classic Denim Jacket (M)</span>
-            <span>$49.99</span>
+    // Render products
+    const grid = $('#productGrid');
+    function renderProducts(items){
+      grid.innerHTML = '';
+      if(items.length===0){ grid.innerHTML = '<div class="muted">No products found.</div>'; return }
+      items.forEach(p => {
+        const div = document.createElement('div'); div.className='product';
+        div.innerHTML = `
+          <img src="${p.img}" alt="${p.title}" />
+          <h3>${p.title}</h3>
+          <div class="muted">${p.category}</div>
+          <div class="price-row">
+            <div class="price">${money(p.price)}</div>
+            <button class="btn add" data-id="${p.id}">Add</button>
           </div>
-          <div class="order-item">
-            <span>Logo T-Shirt (L)</span>
-            <span>$19.99</span>
+        `;
+        grid.appendChild(div);
+      })
+    }
+
+    // Initial render
+    renderProducts(PRODUCTS);
+
+    // Filters
+    $$('.chip').forEach(c => c.addEventListener('click', e=>{
+      const f = e.currentTarget.dataset.filter;
+      const price = e.currentTarget.dataset.price;
+      let list = PRODUCTS.slice();
+      if(f && f!=='all') list = list.filter(i=>i.category===f);
+      if(price){ const [lo,hi]=price.split('-').map(Number); list = list.filter(i=>i.price>=lo && i.price<=hi) }
+      renderProducts(list);
+    }))
+
+    // Sort
+    $('#sortSelect').addEventListener('change', e=>{
+      const val = e.target.value; let list = PRODUCTS.slice();
+      if(val==='price-asc') list.sort((a,b)=>a.price-b.price);
+      if(val==='price-desc') list.sort((a,b)=>b.price-a.price);
+      if(val==='new') list = PRODUCTS.slice();
+      renderProducts(list);
+    })
+
+    // Search
+    $('#searchInput').addEventListener('input', e=>{
+      const q = e.target.value.toLowerCase();
+      renderProducts(PRODUCTS.filter(p=>p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
+    })
+
+    // Cart logic (localStorage)
+    const CART_KEY = 'bn_cart_v1';
+    function readCart(){ try{ return JSON.parse(localStorage.getItem(CART_KEY))||{} }catch(e){return{}} }
+    function writeCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); updateCartUI(); }
+
+    function addToCart(id){ const cart = readCart(); cart[id] = (cart[id] || 0) + 1; writeCart(cart); showToast('Added to cart'); }
+    function removeFromCart(id){ const cart = readCart(); delete cart[id]; writeCart(cart); }
+    function setQty(id,q){ const cart = readCart(); if(q<=0) delete cart[id]; else cart[id]=q; writeCart(cart); }
+
+    function updateCartUI(){
+      const cart = readCart();
+      const itemsContainer = $('#cartItems');
+      itemsContainer.innerHTML = '';
+      let total = 0; let count=0;
+      Object.keys(cart).forEach(id=>{
+        const qty = cart[id]; const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
+        total += p.price * qty; count += qty;
+        const div = document.createElement('div'); div.className='cart-item';
+        div.innerHTML = `
+          <img src="${p.img}" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px"/>
+          <div style="flex:1">
+            <div style="font-weight:700">${p.title}</div>
+            <div class="muted">${money(p.price)} x ${qty}</div>
           </div>
-        </div>
-        <div class="order-total">Total: $69.98</div>
-      </aside>
-    </div>
-    <div id="confirmationMsg" style="display:none; margin-top:2em; text-align:center; font-size:1.2em; color:green;">
-      ✔ Thank you for your purchase! Your order has been placed.
-    </div>
-  </main>
+          <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+            <input type="number" min="0" value="${qty}" data-id="${id}" style="width:56px;padding:6px;border-radius:8px;border:1px solid #eef" />
+            <button data-id="${id}" class="btn secondary removeBtn">Remove</button>
+          </div>
+        `;
+        itemsContainer.appendChild(div);
+      })
+      $('#cartTotal').textContent = money(total);
+      $('#cartCount').textContent = count;
 
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    // Show confirmation message on dummy submit
-    function showConfirmation(e) {
-      e.preventDefault();
-      document.getElementById('confirmationMsg').style.display = 'block';
-      window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+      // attach handlers
+      $$('.removeBtn').forEach(b=>b.addEventListener('click',e=>{ removeFromCart(e.currentTarget.dataset.id) }));
+      $$('#cartItems input[type=number]').forEach(inp=>inp.addEventListener('change',e=>{ setQty(e.currentTarget.dataset.id, Number(e.currentTarget.value)) }));
     }
+
+    // Add button listeners (delegation)
+    document.body.addEventListener('click', e=>{
+      if(e.target.matches('.add')){ addToCart(e.target.dataset.id) }
+    })
+
+    // Cart drawer toggle
+    const cartEl = $('#cart');
+    $('#cartBtn').addEventListener('click', ()=>{
+      const showing = cartEl.style.display !== 'none';
+      cartEl.style.display = showing ? 'none' : 'block';
+      $('#cartBtn').setAttribute('aria-expanded', String(!showing));
+    })
+
+    // Clear & checkout
+    $('#clearCartBtn').addEventListener('click', ()=>{ localStorage.removeItem(CART_KEY); updateCartUI(); });
+    $('#checkoutBtn').addEventListener('click', ()=>{ alert('Demo checkout — integrate your payment gateway here.'); });
+
+    // Simple toast
+    function showToast(msg){ const t = document.createElement('div'); t.textContent=msg; t.style.position='fixed';t.style.left='50%';t.style.transform='translateX(-50%)';t.style.bottom='28px';t.style.background='#111';t.style.color='#fff';t.style.padding='10px 14px';t.style.borderRadius='10px';t.style.zIndex=9999;document.body.appendChild(t);setTimeout(()=>t.style.opacity=0,1600);setTimeout(()=>t.remove(),2600); }
+
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    updateCartUI();
+
+    // Nice-to-have: keyboard accessibility for cart (close on Esc)
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') cartEl.style.display='none' });
   </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>About Us - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .about-main { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #ececec; padding: 2em; }
-    .about-title { font-size: 2em; margin-bottom: 1em; }
-    .section-title { font-size: 1.3em; margin-top: 2em; }
-    .brand-story, .mission, .team { margin-bottom: 2em; }
-    .team-list { display: flex; flex-wrap: wrap; gap: 2em; }
-    .team-member { background: #fafafa; border-radius: 10px; padding: 1em; flex: 1 1 220px; min-width: 180px; text-align: center; }
-    .team-photo { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 0.5em; object-fit: cover; }
-    @media (max-width: 700px) {
-      .about-main { padding: 1em; }
-      .team-list { flex-direction: column; gap: 1em; }
-    }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="#">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="cart.html" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="about-main">
-    <div class="about-title">About BrandName</div>
-    <section class="brand-story">
-      <div class="section-title">Our Story</div>
-      <p>
-        Founded in 2025, BrandName was born out of a desire to bring fresh, sustainable, and authentic fashion to everyone. From humble beginnings as a small online boutique, we've grown into a community of style lovers who value both individuality and quality.
-      </p>
-      <p>
-        Every collection is designed with passion and purpose, blending timeless essentials with bold new trends. We believe clothing should be fun, expressive, and accessible—no matter who you are or where you're from.
-      </p>
-    </section>
-    <section class="mission">
-      <div class="section-title">Our Mission & Vision</div>
-      <ul>
-        <li>To empower self-expression through thoughtfully designed clothing.</li>
-        <li>To lead with sustainability, using eco-friendly materials and ethical manufacturing.</li>
-        <li>To foster a diverse, inclusive fashion community where everyone feels welcome.</li>
-      </ul>
-      <p>
-        Our vision is to become a global leader in conscious fashion—where looking good also means doing good for our planet and people.
-      </p>
-    </section>
-    <section class="team">
-      <div class="section-title">Meet the Team</div>
-      <div class="team-list">
-        <div class="team-member">
-          <img class="team-photo" src="https://placehold.co/70x70?text=A" alt="Alex">
-          <div><strong>Alex Lee</strong></div>
-          <div>Founder & Designer</div>
-        </div>
-        <div class="team-member">
-          <img class="team-photo" src="https://placehold.co/70x70?text=J" alt="Jordan">
-          <div><strong>Jordan Kim</strong></div>
-          <div>Marketing Director</div>
-        </div>
-        <div class="team-member">
-          <img class="team-photo" src="https://placehold.co/70x70?text=S" alt="Sam">
-          <div><strong>Sam Patel</strong></div>
-          <div>Community Manager</div>
-        </div>
-        <!-- Add more team members as needed -->
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Contact Us - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .contact-main { max-width: 900px; margin: 2em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #ececec; padding: 2em; }
-    .contact-title { font-size: 2em; margin-bottom: 1em; }
-    .contact-form { max-width: 480px; margin-bottom: 2em; }
-    .contact-form label { display: block; margin-bottom: 0.3em; font-weight: 500; }
-    .contact-form input, .contact-form textarea { width: 100%; padding: 0.7em; margin-bottom: 1em; border-radius: 5px; border: 1px solid #ddd; }
-    .contact-form textarea { resize: vertical; min-height: 80px; }
-    .contact-form button { background: #0d6efd; color: #fff; border: none; border-radius: 25px; padding: 0.7em 2em; font-size: 1em; cursor: pointer; }
-    .map-section { margin-bottom: 2em; }
-    .map-placeholder { width: 100%; height: 260px; background: #eee url('https://placehold.co/600x260?text=Store+Map') center/cover no-repeat; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 1.2em; }
-    .social-section { margin-top: 2em; }
-    .social-links { display: flex; gap: 2em; align-items: center; }
-    .social-links a { color: #222; font-size: 1.7em; text-decoration: none; transition: color 0.2s; }
-    .social-links a:hover { color: #0d6efd; }
-    @media (max-width: 700px) {
-      .contact-main { padding: 1em; }
-      .social-links { gap: 1em; font-size: 1.3em; }
-      .map-placeholder { height: 150px; }
-    }
-  </style>
-  <!-- Optionally, you can add font-awesome or similar for icons -->
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="cart.html" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-
-  <main class="contact-main">
-    <div class="contact-title">Contact Us</div>
-    <form class="contact-form">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" required>
-      <label for="email">Email Address</label>
-      <input type="email" id="email" required>
-      <label for="message">Message</label>
-      <textarea id="message" required></textarea>
-      <button type="submit" onclick="showThankYou(event)">Send Message</button>
-    </form>
-    <div id="thankYouMsg" style="display:none; color: green; font-weight: bold; margin-bottom:2em;">
-      Thank you! Your message has been sent.
-    </div>
-    <section class="map-section">
-      <div class="section-title" style="font-weight:600;margin-bottom:0.5em;">Our Store</div>
-      <!-- Replace map-placeholder with your real embedded map if you have one -->
-      <div class="map-placeholder">
-        123 Fashion Ave, New York, NY<br>
-        (Map Coming Soon)
-      </div>
-    </section>
-    <section class="social-section">
-      <div class="section-title" style="font-weight:600;margin-bottom:0.5em;">Connect with Us</div>
-      <div class="social-links">
-        <a href="#" title="Instagram" target="_blank">Instagram</a>
-        <a href="#" title="Facebook" target="_blank">Facebook</a>
-        <a href="#" title="Twitter" target="_blank">Twitter</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    function showThankYou(e) {
-      e.preventDefault();
-      document.getElementById('thankYouMsg').style.display = 'block';
-      setTimeout(function(){ document.getElementById('thankYouMsg').style.display = 'none'; }, 4000);
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Sign In / Sign Up - BrandName</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .account-main { max-width: 400px; margin: 3em auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px #ececec; padding: 2em; }
-    .account-title { font-size: 1.7em; margin-bottom: 1em; }
-    .account-form label { display: block; margin-bottom: 0.3em; font-weight: 500; }
-    .account-form input { width: 100%; padding: 0.7em; margin-bottom: 1em; border-radius: 5px; border: 1px solid #ddd; }
-    .account-form button { background: #0d6efd; color: #fff; border: none; border-radius: 25px; padding: 0.7em 2em; font-size: 1em; cursor: pointer; width: 100%; margin-bottom: 1em;}
-    .switch-link { text-align: center; display: block; margin-top: 1em; font-size: 0.98em; }
-  </style>
-</head>
-<body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <div class="logo"><a href="index.html">BrandName</a></div>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-      <div class="search-cart">
-        <input type="text" placeholder="Search..." class="search-bar"/>
-        <a href="cart.html" class="cart-link">🛒</a>
-      </div>
-    </div>
-  </header>
-  <main class="account-main">
-    <div class="account-title" id="formTitle">Sign In</div>
-    <form class="account-form" id="loginForm">
-      <label for="login-email">Email Address</label>
-      <input type="email" id="login-email" required>
-      <label for="login-password">Password</label>
-      <input type="password" id="login-password" required>
-      <button type="submit">Sign In</button>
-      <span class="switch-link"><a href="#" onclick="switchForm(event)">Don't have an account? Sign Up</a></span>
-    </form>
-    <form class="account-form" id="signupForm" style="display:none;">
-      <label for="signup-email">Email Address</label>
-      <input type="email" id="signup-email" required>
-      <label for="signup-password">Password</label>
-      <input type="password" id="signup-password" required>
-      <label for="signup-password2">Confirm Password</label>
-      <input type="password" id="signup-password2" required>
-      <button type="submit">Sign Up</button>
-      <span class="switch-link"><a href="#" onclick="switchForm(event)">Already have an account? Sign In</a></span>
-    </form>
-  </main>
-  <footer class="site-footer">
-    <div class="container footer-row">
-      <form class="newsletter-signup">
-        <label for="newsletter-email">Sign up for updates:</label>
-        <input type="email" id="newsletter-email" placeholder="Your email">
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-links">
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-      </div>
-      <div class="footer-info">
-        <a href="#">Privacy Policy</a>
-        <a href="#">FAQ</a>
-        <a href="#">Contact</a>
-      </div>
-    </div>
-  </footer>
-  <script>
-    // Toggle between login and signup forms
-    function switchForm(e) {
-      e.preventDefault();
-      const loginForm = document.getElementById('loginForm');
-      const signupForm = document.getElementById('signupForm');
-      const formTitle = document.getElementById('formTitle');
-      if (loginForm.style.display === "none") {
-        loginForm.style.display = "";
-        signupForm.style.display = "none";
-        formTitle.textContent = "Sign In";
-      } else {
-        loginForm.style.display = "none";
-        signupForm.style.display = "";
-        formTitle.textContent = "Sign Up";
-      }
-    }
-  </script>
-</body>
-</html>
-<div class="developed-by" style="text-align:center; font-size:0.95em; margin-top:1em; color:#888;">
-  Developed by MIR SAHIL &copy; 2025
-</div>
-<!-- logo.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="300" height="100" role="img" aria-labelledby="title desc">
-  <title id="title">YourBrand — clothing</title>
-  <desc id="desc">Square monogram 'YB' and wordmark 'YourBrand'</desc>
-
-  <!-- background (optional) -->
-  <rect width="600" height="200" fill="none"/>
-
-  <!-- monogram circle -->
-  <g transform="translate(40,20)">
-    <circle cx="70" cy="70" r="70" fill="#111827"/>
-    <!-- stylized Y -->
-    <path d="M40 45 L70 95 L100 45" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <!-- small stem to make B feel like part of Y-mark -->
-    <path d="M70 95 v22" stroke="#fff" stroke-width="12" stroke-linecap="round" />
-  </g>
-
-  <!-- logotype -->
-  <g transform="translate(220,110)" font-family="Montserrat, Arial, sans-serif">
-    <text x="0" y="-10" font-size="46" fill="#111827" font-weight="700">YourBrand</text>
-    <text x="0" y="30" font-size="14" fill="#6B7280" font-weight="500" letter-spacing="1">Modern apparel • crafted for life</text>
-  </g>
-</svg>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YourBrand</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: #f9fafb;
-      color: #111827;
-    }
-
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: white;
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    header p {
-      font-size: 1.25rem;
-      margin-bottom: 30px;
-      color: #d1d5db;
-    }
-
-    header a {
-      display: inline-block;
-      background: #facc15;
-      color: #111827;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 12px 28px;
-      border-radius: 8px;
-      transition: background 0.2s ease;
-    }
-
-    header a:hover {
-      background: #eab308;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Welcome to YourBrand</h1>
-    <p>Modern clothing crafted for comfort & style.</p>
-    <a href="#shop">Shop Now</a>
-  </header>
-
 </body>
 </html>
