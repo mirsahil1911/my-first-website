@@ -1,210 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>RePhone — Buy & Sell Used Phones</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Used Phones Exchange</title>
   <style>
-    :root{--accent:#0ea5a4;--muted:#666}
-    body{font-family:Inter,system-ui,Arial;margin:0;background:#f5f7fb;color:#111}
-    header{background:#042f2e;color:#fff;padding:18px 20px;display:flex;align-items:center;gap:14px}
-    .logo{font-weight:700;font-size:1.3rem}
-    .container{max-width:1100px;margin:28px auto;padding:0 16px}
-    .top{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-    .search{flex:1;display:flex;gap:8px}
-    .search input{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd}
-    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:18px}
-    .card{background:white;border-radius:10px;padding:12px;border:1px solid #e6e9ee;box-shadow:0 6px 18px rgba(2,6,23,0.04)}
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px}
-    .price{color:var(--accent);font-weight:700;font-size:1.05rem}
-    .meta{font-size:0.9rem;color:var(--muted)}
-    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-    /* listing form modal */
-    .modal{position:fixed;inset:0;background:rgba(4,7,21,0.45);display:none;justify-content:center;align-items:start;padding-top:40px}
-    .modal.show{display:flex}
-    .panel{background:#fff;padding:18px;border-radius:10px;max-width:720px;width:100%}
-    .row{display:flex;gap:8px}
-    .row .col{flex:1}
-    label{display:block;font-size:0.85rem;margin-bottom:6px}
-    input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #ddd}
-    .small{font-size:0.85rem;color:var(--muted)}
-    .upi-btn{background:#0b7a6a;color:white;padding:8px;border-radius:8px;text-decoration:none;display:inline-block}
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="logo">MEERZ EXCHANGE</div>
-  <div class="small">Buy & Sell Used Phones & Accessories</div>
-</header>
-
-<div class="container">
-  <div class="top">
-    <div class="search">
-      <input id="q" placeholder="Search brand, model, accessory...">
-      <button class="btn" onclick="openCreate()">+ Create Listing</button>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <select id="filterCategory">
-        <option value="">All Categories</option>
-        <option>Phone</option><option>Charger</option><option>Case</option><option>Headphones</option><option>Power Bank</option>
-      </select>
-      <select id="filterCondition">
-        <option value="">Any Condition</option><option>Like-new</option><option>Good</option><option>Fair</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="filters small">Tip: click a card to view details & contact seller.</div>
-
-  <div id="feed" class="grid"></div>
-</div>
-
-<!-- Listing Form Modal -->
-<div id="modal" class="modal">
-  <div class="panel">
-    <h3>Create Listing</h3>
-    <div style="display:flex;gap:10px">
-      <div style="flex:2">
-        <label>Title</label>
-        <input id="title" placeholder="e.g. Samsung Galaxy S10 - Good">
-        <label>Category</label>
-        <select id="category"><option>Phone</option><option>Charger</option><option>Case</option><option>Headphones</option><option>Power Bank</option></select>
-        <label>Brand / Model</label>
-        <input id="brand" placeholder="e.g. Samsung, iPhone, OnePlus">
-        <label>Condition</label>
-        <select id="condition"><option>Like-new</option><option>Good</option><option>Fair</option></select>
-        <label>Price (INR)</label>
-        <input id="price" type="number" placeholder="1500">
-        <label>Location (City)</label>
-        <input id="location" placeholder="e.g. Mumbai">
-        <label>Images (URLs comma separated)</label>
-        <input id="images" placeholder="https://... , https://...">
-        <label>Description</label>
-        <textarea id="desc" rows="4"></textarea>
-      </div>
-      <div style="flex:1">
-        <div class="small">Preview</div>
-        <div id="preview" style="margin-top:8px"></div>
-        <div style="margin-top:14px">
-          <button class="btn" onclick="submitListing()">Post Listing</button>
-          <button style="margin-left:8px" onclick="closeCreate()">Cancel</button>
-        </div>
-        <hr>
-        <div class="small">Instant UPI pay link (for buyers)</div>
-        <label>Seller UPI ID</label>
-        <input id="sellerUpi" placeholder="merchant_upi@bank">
-        <div style="margin-top:8px">
-          <input id="upiAmount" placeholder="Amount" type="number">
-          <a id="upiLink" class="upi-btn" href="#" target="_blank" style="display:inline-block;margin-top:8px">Generate UPI Link</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-  // Demo in-memory listings array
-  const listings = [
-    {id:1,title:'iPhone X - Good',category:'Phone',brand:'Apple',condition:'Good',price:10999,images:['https://via.placeholder.com/400x320?text=iPhone+X'],location:'Delhi',desc:'Working fine, battery 85%'},
-    {id:2,title:'OnePlus Charger',category:'Charger',brand:'OnePlus',condition:'Like-new',price:299,images:['https://via.placeholder.com/400x320?text=Charger'],location:'Mumbai',desc:'Fast charger 30W'},
-    {id:3,title:'Samsung Galaxy S9',category:'Phone',brand:'Samsung',condition:'Fair',price:4500,images:['https://via.placeholder.com/400x320?text=S9'],location:'Bengaluru',desc:'Screen has small scratch'}
-  ];
-
-  const feed = document.getElementById('feed');
-  function render() {
-    feed.innerHTML = '';
-    const q = document.getElementById('q').value.toLowerCase();
-    const cat = document.getElementById('filterCategory').value;
-    const cond = document.getElementById('filterCondition').value;
-    const filtered = listings.filter(l=>{
-      if(cat && l.category!==cat) return false;
-      if(cond && l.condition!==cond) return false;
-      if(q && !(l.title.toLowerCase().includes(q)||l.brand.toLowerCase().includes(q)||l.desc.toLowerCase().includes(q))) return false;
-      return true;
-    });
-    for(const l of filtered){
-      const el = document.createElement('div'); el.className='card';
-      el.innerHTML = `
-        <img src="${l.images[0]||'https://via.placeholder.com/400x320?text=No+Image'}" alt="">
-        <div style="margin-top:8px"><strong>${l.title}</strong></div>
-        <div class="meta">${l.brand} • ${l.condition} • ${l.location}</div>
-        <div class="card-footer">
-          <div class="price">₹${l.price}</div>
-          <div><button class="btn" onclick="view(${l.id})">View</button></div>
-        </div>`;
-      feed.appendChild(el);
-    }
-  }
-  render();
-
-  document.getElementById('q').addEventListener('input',render);
-  document.getElementById('filterCategory').addEventListener('change',render);
-  document.getElementById('filterCondition').addEventListener('change',render);
-
-  // Modal functions
-  function openCreate(){ document.getElementById('modal').classList.add('show'); updatePreview(); }
-  function closeCreate(){ document.getElementById('modal').classList.remove('show'); }
-  function updatePreview(){
-    const title = document.getElementById('title').value || 'Preview Title';
-    const price = document.getElementById('price').value || '0';
-    const imgs = (document.getElementById('images').value||'').split(',').map(s=>s.trim()).filter(Boolean);
-    document.getElementById('preview').innerHTML = `<div style="border:1px solid #eee;padding:8px;border-radius:8px">
-      <img src="${imgs[0]||'https://via.placeholder.com/300x220?text=Preview'}" style="width:100%;height:140px;object-fit:cover;border-radius:6px">
-      <div style="margin-top:6px"><strong>${title}</strong></div><div class="meta">₹${price}</div></div>`;
-  }
-  document.getElementById('images').addEventListener('input', updatePreview);
-  document.getElementById('title').addEventListener('input', updatePreview);
-  document.getElementById('price').addEventListener('input', updatePreview);
-
-  function submitListing(){
-    const l = {
-      id: Date.now(),
-      title: document.getElementById('title').value,
-      category: document.getElementById('category').value,
-      brand: document.getElementById('brand').value,
-      condition: document.getElementById('condition').value,
-      price: Number(document.getElementById('price').value),
-      images: (document.getElementById('images').value||'').split(',').map(s=>s.trim()).filter(Boolean),
-      location: document.getElementById('location').value,
-      desc: document.getElementById('desc').value
-    };
-    listings.unshift(l);
-    closeCreate();
-    render();
-    alert('Listing created! (demo only — no server persistence)');
-  }
-
-  // view listing details (simple)
-  function view(id){
-    const l = listings.find(x=>x.id===id);
-    if(!l) return alert('Not found');
-    const upi = prompt('Contact seller via UPI? Enter seller UPI ID (demo):','merchant_upi@bank');
-    if(upi){
-      // create UPI deeplink
-      const upiUrl = `upi://pay?pa=${encodeURIComponent(upi)}&pn=${encodeURIComponent('Seller')}&tn=${encodeURIComponent(l.title)}&am=${encodeURIComponent(l.price)}&cu=INR`;
-      // fallback to webpay (Google Pay deep-link via intent)
-      if(confirm('Open UPI app to pay?')) {
-        window.location.href = upiUrl;
-      }
-    } else {
-      alert('You can message seller using in-app chat (not implemented in demo).');
-    }
-  }
-
-  // UPI link generation UI
-  document.getElementById('upiLink').addEventListener('click', function(e){
-    e.preventDefault();
-    const upi = document.getElementById('sellerUpi').value.trim();
-    const amt = document.getElementById('upiAmount').value || '0';
-    if(!upi){ alert('Enter UPI ID'); return; }
-    const link = `upi://pay?pa=${encodeURIComponent(upi)}&pn=${encodeURIComponent('Seller')}&am=${encodeURIComponent(amt)}&tn=${encodeURIComponent('Payment+for+listing')}&cu=INR`;
-    this.href = link;
-    this.click();
-  });
-</script>
-
-</body>
-</html>
+    :root{--accent:#0b74de;--bg:#f7f9fc;--card:#fff}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial; margin:0; background:var(--bg); color:#1f2937}
+    .container{max-width:1000px;margin:28px auto;padding:20px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    h1{font-size:20px;margin:0}
+    .bar{display:flex;gap:8px;align-items:center}
+    input,select,textarea,button{font:inherit}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+    .form-grid{display:grid;grid-template-columns:1fr 120px;gap:8px}
+    .form-grid .col{display:flex;flex-direction:column;gap:6px}
+    label{font-size:13px;color:#374151}
+    .list{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .item{display:flex;flex-direction:column;border-radius:10px;overflow:hidden}
+    .item img{width:100%;height:160px;object-fit:cover;background:#eee}
+    .item .meta{padding:10px;display:flex;flex-direction:column;gap:6px}
+    .price{font-weight:700;color:var(--accent)}
+    .small{font-size:13px;color:#6b7280}
+    .actions{display:flex;gap:8px;margin-top:8px}
+    button.primary{background:var(--accent);color:white;border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+    button.ghost{background:transparent;border:1px solid #e5e7eb;padding:8px;bor
